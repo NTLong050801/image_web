@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../db/cogfig.php');
 ?>
 <!DOCTYPE html>
@@ -30,6 +31,8 @@ include('../db/cogfig.php');
 <body style="background-color: #d2f4ea;">
     <div class="container">
         <form method="Post" class="form_login">
+        <h2>Đăng nhập</h2>
+        <br>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Tên tài khoản</label>
                 <input name="adm_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -50,6 +53,7 @@ include('../db/cogfig.php');
             $adm_pass = $_POST['adm_pass'];
             $slt =mysqli_query($conn,"Select * from admin where adm_name = '$adm_name' and adm_pass = '$adm_pass'");
             if(mysqli_num_rows($slt) > 0){
+                $_SESSION['login'] = $adm_name;
                 header('location:admin.php');
             }
         }
