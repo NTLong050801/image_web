@@ -1,0 +1,15 @@
+.title {
+    margin-top: 50px;
+}
+.btn-group {
+    margin: auto;
+    width: 40%;
+    text-align: center;
+    margin-left: 30%;
+    margin-bottom: 50px;
+    /* margin-right: 20%; */
+}
+.btn-outline-primary{
+    color: red;
+    background-color: #ffc107;
+}
