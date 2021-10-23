@@ -231,6 +231,7 @@ include('../db/cogfig.php');
                             fetch_data(); //reset lại form
                             $('#image_form')[0].reset(); //reset lại modal
                             $('#exampleModal').modal('hide'); // ẩn modal
+                            alert(dt);
                         }
                     });
                 }

@@ -49,6 +49,8 @@ include('../db/cogfig.php');
                 <label for="exampleInputPassword1" class="form-label">Nhập lại mật khẩu</label>
                 <input name="adm_pass1" type="password" class="form-control" id="exampleInputPassword1">
             </div>
+            <a class="btn btn-secondary" href="../index.php">Quay lại</a>
+
             <button name="submit" type="submit" class="btn btn-primary">Đăng ký</button>
         </form>
         <?php 
@@ -67,6 +69,7 @@ include('../db/cogfig.php');
                     $insert = mysqli_query($conn,"Insert into admin(adm_name,adm_pass,status)
                     values ('$adm_name','$adm_pass','0')");
                     if($insert){
+                        $_SESSION['meseger'] = '<h4 style = "color : green">Bạn đã đăng ký thành công</h4>';
                         header('location:admin.php');
                     }
                 }else{

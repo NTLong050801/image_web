@@ -111,6 +111,7 @@ if (isset($_POST['action'])) {
                 if ($ext == 'animalimg') {
                     $insert_view = mysqli_query($conn, "Insert into animalimg(animal_name) values ('$image_name')");
                 }
+                echo 'Bạn đã thêm ảnh thành công';
             } else {
                 echo 'Thêm ảnh thất bại';
             }
@@ -118,7 +119,8 @@ if (isset($_POST['action'])) {
     }
     $adm_name_get = $_SESSION['login'];
     if ($_POST['action'] == "delete") {
-        $slt_adm = mysqli_query($conn, "Select status from admin where adm_name = '$adm_name_get'");
+        $slt_status = mysqli_query($conn, "Select status from admin where adm_name = '$adm_name_get'");
+        $slt_adm = mysqli_fetch_assoc($slt_status)['status'];
         if ($slt_adm == '1') {
             $id = $_POST['id'];
             $val = $_POST['val'];

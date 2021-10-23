@@ -17,8 +17,8 @@ include('../db/cogfig.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <style>
         .form_login {
-            
-          
+
+
             position: absolute;
             width: 30%;
             left: 35%;
@@ -31,8 +31,16 @@ include('../db/cogfig.php');
 <body style="background-color: #d2f4ea;">
     <div class="container">
         <form method="Post" class="form_login">
-        <h2>Đăng nhập</h2>
-        <br>
+            <br>
+            <h2>Đăng nhập</h2>
+            <?php
+            if (isset($_SESSION['meseger'])) {
+                echo $_SESSION['meseger'];
+                unset($_SESSION['meseger']);
+            }
+
+            ?>
+            <br>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Tên tài khoản</label>
                 <input name="adm_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -45,19 +53,20 @@ include('../db/cogfig.php');
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Nhớ tài khoản</label>
             </div>
+            <a class="btn btn-secondary" href="../index.php">Quay lại</a>
             <button name="submit" type="submit" class="btn btn-primary">Đăng nhập</button>
         </form>
-        <?php 
-        if(isset($_POST['submit'])){
+        <?php
+        if (isset($_POST['submit'])) {
             $adm_name = $_POST['adm_name'];
             $adm_pass = $_POST['adm_pass'];
-            $slt =mysqli_query($conn,"Select * from admin where adm_name = '$adm_name' and adm_pass = '$adm_pass'");
-            if(mysqli_num_rows($slt) > 0){
+            $slt = mysqli_query($conn, "Select * from admin where adm_name = '$adm_name' and adm_pass = '$adm_pass'");
+            if (mysqli_num_rows($slt) > 0) {
                 $_SESSION['login'] = $adm_name;
                 header('location:admin.php');
             }
         }
-        
+
         ?>
     </div>
 
